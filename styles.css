@@ -1,0 +1,193 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS E RESET
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    /* O body agora só cuida do fundo e não tem mais padding */
+    background-image: url("img/fundo.jpg");
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   NOVO CONTAINER PRINCIPAL
+   ========================================================================== */
+.container {
+    max-width: 1200px; /* Largura máxima do conteúdo */
+    margin: 0 auto;    /* Centraliza o container na tela */
+    padding: 0 40px;   /* Espaçamento interno para o conteúdo não colar nas bordas */
+    height: 100vh;     /* Ocupa 100% da altura da tela */
+    display: flex;
+    flex-direction: column; /* Organiza os filhos (header, conteudo, menu) em coluna */
+    position: relative; /* Base para os elementos com position: absolute */
+}
+
+/* ==========================================================================
+   HEADER E CONTEÚDO
+   ========================================================================== */
+header {
+    padding-top: 30px;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.logo {
+    width: 80px;
+}
+
+.caixa-conteudo {
+    flex-grow: 1; /* Faz esta caixa ocupar o espaço vertical disponível */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* CORREÇÃO: Volta a separar os itens */
+    gap: 40px;
+    animation: fadeInSlideUp 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.caixa-textos {
+    width: 100%;
+    max-width: 550px; /* Limita a largura do texto */
+}
+
+h2 {
+    color: #fff;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 1.2;
+    left: -222px;
+    top: 0;
+    position: relative;
+    animation: fadeInSlideUp 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+.texto-starbucks {
+    color: #017143;
+    font-weight: 900;
+    font-size: 70px;
+}
+
+.paragrafo, p {
+    font-size: 16px;
+    color: #fff;
+    margin-top: 20px;
+    left: -222px;
+    top: 0;
+    position: relative;
+    animation: fadeInSlideUp 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+button {
+    background-color: #017143;
+    color: #fff;
+    margin-top: 30px;
+    padding: 10px 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 40px;
+    transition: background-color 0.3s;
+
+}
+
+button:hover {
+    background-color: #00b368;
+    transition: 0.7s;
+    scale: 1.1;
+}
+
+.caixa-imagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.imagem-copo {
+    width: 100%;
+    max-width: 340px; /* Garante que o copo não fique gigante */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    top: 222px;
+    right: -220px;
+    position: absolute;
+    animation: fadeInSlideUp 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+/* ==========================================================================
+   MENU DE SELEÇÃO E CÍRCULO DE FUNDO
+   ========================================================================== */
+.caixamenu {
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    animation: fadeInSlideUp 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+.botao-menu {
+    width: 80px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.botao-menu:hover {
+    transform: translateY(-15px);
+}
+
+.botao-menu.ativo {
+    transform: translateY(-15px);
+    border-bottom: 3px solid #006241;
+    padding-bottom: 5px;
+}
+
+.circulo {
+    background-color: #017143;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 222px;
+    left: 121px;
+    /* AJUSTE: Voltamos a usar um raio fixo de 600px, que é mais previsível */
+    clip-path: circle(449px at 85% 50%);
+    z-index: -1;
+    transition: background-color 0.5s ease;
+    animation: pulseColor 4s ease-in-out infinite alternate;
+}
+
+/* ==========================================================================
+   ANIMAÇÕES (@keyframes)
+   ========================================================================== */
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulseColor {
+    from { transform: scale(1); }
+    to { transform: scale(1.02); }
+}
+
+@keyframes cupShake {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.imagem-copo.animating {
+    animation: cupShake 0.4s ease-in-out;
+}
